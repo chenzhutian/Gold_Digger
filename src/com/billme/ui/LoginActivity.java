@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import com.billme.logic.BillMeActivity;
 import com.billme.logic.MainService;
-import com.billme.logic.Task;
 import com.billme.util.NetUtil;
 import com.futurePayment.constant.ResultCode;
+import com.futurePayment.constant.Task;
 import com.futurePayment.model.PaymentException;
 
 public class LoginActivity extends BaseActivity implements BillMeActivity {

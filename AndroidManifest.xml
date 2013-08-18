@@ -19,6 +19,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -26,39 +27,40 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name" >
-        </activity>
-                <activity
-            android:name=".RegistActivity"
+            android:name="com.billme.ui.LoginActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".LogoActivity"
+            android:name="com.billme.ui.RegistActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.billme.ui.LogoActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.billme.ui.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".UserImformationActivity"
+            android:name="com.billme.ui.UserImformationActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".PaymentActivity"
+            android:name="com.billme.ui.PaymentActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".RepayActivity"
+            android:name="com.billme.ui.RepayActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".AccountActivity"
+            android:name="com.billme.ui.AccountActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -69,12 +71,26 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
 
-        <service android:name="com.billme.logic.MainService"
+        <service
+            android:name="com.billme.logic.MainService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.billme.loogic.MainService" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name="com.billme.ui.NFCPaymentActivity"
+            android:label="@string/title_activity_nfcpayment" >
+        </activity>
+        <activity
+            android:name="com.billme.ui.PaymentConfirmActivity"
+            android:label="@string/title_activity_payment_confirm" >
+        </activity>
+        <activity
+            android:name="com.billme.ui.FriendActivity"
+            android:label="@string/title_activity_friend" >
+        </activity>
     </application>
 
 </manifest>

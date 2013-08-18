@@ -9,7 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class BaseActivity extends Activity {
 	protected GestureDetector gd;
@@ -31,6 +34,23 @@ public class BaseActivity extends Activity {
 				FrameLayout.LayoutParams.WRAP_CONTENT);
 		layoutParams.setMargins(0, 0, 0, 0);
 		this.addContentView(myLayout, layoutParams);
+	}
+	
+	public void addTitle(String t)
+	{
+		ImageButton backButton = (ImageButton) findViewById(R.id.btn_mytitle_back);
+		TextView title = (TextView) findViewById(R.id.tv_mytitle_title);
+		title.setText(t);
+		backButton.setOnClickListener(new Button.OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v)
+			{
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 	}
 
 	@Override

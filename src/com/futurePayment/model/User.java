@@ -29,10 +29,10 @@ public class User {
 	private double balance;
 	private ArrayList<VipCard> vipCardList = new ArrayList<VipCard>();
 	private ArrayList<Coupon> couponList = new ArrayList<Coupon>();
-	private LinkedList<String> friendList = new LinkedList<String>();
-	private LinkedList<String> concernList = new LinkedList<String>();
+	private ArrayList<Friend> friendList = new ArrayList<Friend>();
+	private ArrayList<String> concernList = new ArrayList<String>();
 	private ArrayList<BankCard> bankCardList = new ArrayList<BankCard>();
-	private LinkedList<TradeRecord> tradeRecordList = new LinkedList<TradeRecord>();
+	private ArrayList<TradeRecord> tradeRecordList = new ArrayList<TradeRecord>();
 	
 	public User()
 	{
@@ -41,63 +41,63 @@ public class User {
 		this.name = name;
 	}
     
-	public User(JSONObject userInfo){
-		try {
-			setName(userInfo.getString("name"));
-			setRealName(userInfo.getString("realName"));
-			setSex(userInfo.getString("sex"));
-			setBirthday(userInfo.getString("birthday"));
-			setPhone(userInfo.getString("phone"));
-			setEmail(userInfo.getString("email"));
-			setGrade(userInfo.getInt("grade"));
-			
-			Log.i("error", userInfo.toString());
-			JSONArray vipCards = userInfo.getJSONArray("vipCardList");
-			for(int i = 0; i < vipCards.length(); i++){
-				JSONObject ob = vipCards.getJSONObject(i);
-				VipCard card = new VipCard();
-				card.setEnterpriseName(ob.getString("enterpriseName"));
-				card.setGrade(ob.getInt("grade"));
-				vipCardList.add(card);
-			}
-			JSONArray coupons = userInfo.getJSONArray("couponList");
-			for(int i = 0; i < coupons.length(); i++){
-				JSONObject ob = coupons.getJSONObject(i);
-				Coupon coupon = new Coupon();
-				coupon.setEnterpriseName(ob.getString("enterpriseName"));
-				coupon.setEndTime(ob.getString("endTime"));
-				coupon.setLeast(ob.getDouble("least"));
-				coupon.setStartTime(ob.getString("startTime"));
-				coupon.setValue(ob.getDouble("value"));
-				coupon.setAmount(ob.getInt("amount"));
-				couponList.add(coupon);
-			}
-			JSONArray friends = userInfo.getJSONArray("friendList");
-			for(int i = 0; i < friends.length(); i++){
-				JSONObject ob = friends.getJSONObject(i);
-				String friend = ob.getString("friendName");
-				friendList.add(friend);
-			}
-			JSONArray concerns = userInfo.getJSONArray("concernList");
-			for(int i = 0; i < concerns.length(); i++){
-				JSONObject ob = concerns.getJSONObject(i);
-				String enterprise = ob.getString("enterpriseName");
-				concernList.add(enterprise);
-			}
-			JSONArray bankCards = userInfo.getJSONArray("bankCardList");
-			for(int i = 0; i < bankCards.length(); i++){
-				JSONObject ob = bankCards.getJSONObject(i);
-				BankCard card = new BankCard();
-				card.setCardNumber(ob.getString("cardNumber"));
-				card.setBankName(ob.getString("bank"));
-				bankCardList.add(card);
-			}
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			Log.i("error", e.toString());
-		}
-	}
+//	public User(JSONObject userInfo){
+//		try {
+//			setName(userInfo.getString("name"));
+//			setRealName(userInfo.getString("realName"));
+//			setSex(userInfo.getString("sex"));
+//			setBirthday(userInfo.getString("birthday"));
+//			setPhone(userInfo.getString("phone"));
+//			setEmail(userInfo.getString("email"));
+//			setGrade(userInfo.getInt("grade"));
+//			
+//			Log.i("error", userInfo.toString());
+//			JSONArray vipCards = userInfo.getJSONArray("vipCardList");
+//			for(int i = 0; i < vipCards.length(); i++){
+//				JSONObject ob = vipCards.getJSONObject(i);
+//				VipCard card = new VipCard();
+//				card.setEnterpriseName(ob.getString("enterpriseName"));
+//				card.setGrade(ob.getInt("grade"));
+//				vipCardList.add(card);
+//			}
+//			JSONArray coupons = userInfo.getJSONArray("couponList");
+//			for(int i = 0; i < coupons.length(); i++){
+//				JSONObject ob = coupons.getJSONObject(i);
+//				Coupon coupon = new Coupon();
+//				coupon.setEnterpriseName(ob.getString("enterpriseName"));
+//				coupon.setEndTime(ob.getString("endTime"));
+//				coupon.setLeast(ob.getDouble("least"));
+//				coupon.setStartTime(ob.getString("startTime"));
+//				coupon.setValue(ob.getDouble("value"));
+//				coupon.setAmount(ob.getInt("amount"));
+//				couponList.add(coupon);
+//			}
+//			JSONArray friends = userInfo.getJSONArray("friendList");
+//			for(int i = 0; i < friends.length(); i++){
+//				JSONObject ob = friends.getJSONObject(i);
+//				String friend = ob.getString("friendName");
+//				friendList.add(friend);
+//			}
+//			JSONArray concerns = userInfo.getJSONArray("concernList");
+//			for(int i = 0; i < concerns.length(); i++){
+//				JSONObject ob = concerns.getJSONObject(i);
+//				String enterprise = ob.getString("enterpriseName");
+//				concernList.add(enterprise);
+//			}
+//			JSONArray bankCards = userInfo.getJSONArray("bankCardList");
+//			for(int i = 0; i < bankCards.length(); i++){
+//				JSONObject ob = bankCards.getJSONObject(i);
+//				BankCard card = new BankCard();
+//				card.setCardNumber(ob.getString("cardNumber"));
+//				card.setBankName(ob.getString("bank"));
+//				bankCardList.add(card);
+//			}
+//			
+//		} catch (JSONException e) {
+//			// TODO Auto-generated catch block
+//			Log.i("error", e.toString());
+//		}
+//	}
 	public String getName() {
 		return name;
 	}
@@ -165,19 +165,19 @@ public class User {
 	{
 		this.couponList = couponList;
 	}
-	public LinkedList<String> getFriendList()
+	public ArrayList<Friend> getFriendList()
 	{
 		return friendList;
 	}
-	public void setFriendList(LinkedList<String> friendList)
+	public void setFriendList(ArrayList<Friend> friendList)
 	{
 		this.friendList = friendList;
 	}
-	public LinkedList<String> getConcernList()
+	public ArrayList<String> getConcernList()
 	{
 		return concernList;
 	}
-	public void setConcernList(LinkedList<String> concernList)
+	public void setConcernList(ArrayList<String> concernList)
 	{
 		this.concernList = concernList;
 	}
@@ -221,11 +221,11 @@ public class User {
 	{
 		this.birthday = birthday;
 	}
-	public LinkedList<TradeRecord> getTradeRecordList()
+	public ArrayList<TradeRecord> getTradeRecordList()
 	{
 		return tradeRecordList;
 	}
-	public void setTradeRecordList(LinkedList<TradeRecord> tradeRecordList)
+	public void setTradeRecordList(ArrayList<TradeRecord> tradeRecordList)
 	{
 		this.tradeRecordList = tradeRecordList;
 	}

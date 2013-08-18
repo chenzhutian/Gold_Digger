@@ -1,5 +1,6 @@
 package com.futurePayment.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -7,6 +8,8 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import org.json.JSONObject;
+
+import com.billme.util.FileUtil;
 
 import android.util.Log;
 
@@ -21,6 +24,7 @@ import android.util.Log;
 public class FuturePayment{ 
 	private static FuturePayment instance = null;
 	private User user = new User();
+	private FileUtil fileUtil = null;
 	private FuturePaymentSupport supporter;
 	/**
 	 * 
@@ -30,6 +34,7 @@ public class FuturePayment{
 	 */
 	private FuturePayment(String name) {
 		user.setName(name);
+		fileUtil = new FileUtil(name);
 		supporter = new FuturePaymentSupport(name);
 	}
 
@@ -404,7 +409,26 @@ public class FuturePayment{
 			throw e;
 		}
 	}
-	
+	/**
+	 * 查询好友列表
+	 * @return 好友列表
+	 * @throws PaymentException
+	 */
+	public ArrayList<Friend> queryFriend()throws PaymentException{
+		try
+		{
+			ArrayList<Friend> friend = supporter.queryFriend();
+			for(int i = 0; i < friend.size(); i++)
+			{
+				modelToAddress(friend.get(i));
+			}
+			return friend;
+		}
+		catch(PaymentException e)
+		{
+			throw e;
+		}
+	}
 	/**
 	 * 添加好友
 	 * @param friendId 好友id
@@ -556,5 +580,62 @@ public class FuturePayment{
 		{
 			throw e;
 		}
+	}
+//	/**
+//	 * 检测文件是否存在
+//	 * @param path 目录路径
+//	 * @param name 文件名
+//	 * @return 文件是否存在
+//	 */
+//	public boolean isFileExist(String path, String name)
+//	{
+//		FileUtil fu = new FileUtil();
+//		//在应用根目录基础加入用户名
+//		return fu.isFileExists(getUser().getName() + File.separator + path, name);
+//	}
+//	/**
+//	 * 检测文件是否一致，通过大小
+//	 * @param path 目录路径
+//	 * @param name 文件名
+//	 * @return 文件是否一致
+//	 */
+//	public boolean isSameFile(String path, String name, int size)
+//	{
+//		FileUtil fu = new FileUtil();
+//		//在应用根目录基础加入用户名
+//		return fu.isSameFile(getUser().getName() + File.separator + path, name, size);
+//	}
+	/**
+	 * 把实体转化成存储地址
+	 * @param urlStr
+	 * @return
+	 */
+	public String modelToAddress(Object model)
+	{
+		String result = null;
+		if(model instanceof Friend)
+		{
+			Friend f = (Friend)model;
+			String dir = "Friend";
+			String name = f.getName();
+			result = dir + File.separator + name;
+			if(fileUtil.isSameFile(dir, name, f.getSize()))
+			{
+				
+			}
+			else
+			{
+				if(fileUtil.downloadFile(f.getPath(), dir, name, true))
+				{
+					f.setPath(result);
+					f.setSize(fileUtil.getFileSize(dir, name));
+				}
+				else
+				{
+					//下载失败
+				}
+			}
+		}
+		return result;
 	}
 }

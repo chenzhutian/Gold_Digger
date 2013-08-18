@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PaymentConfirmActivity" >
+
+    <include layout="@layout/my_title"/>
+    <TextView style="@style/DefaultText"
+        android:id="@+id/tv_payment_confirm_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="您需向？？支付？？"/>
+    <ListView
+        android:id="@+id/lv_payment_confirm_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="@drawable/list_selector"/>
+    <GridView 
+        android:id="@+id/gv_payment_confirm_people"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:listSelector="@drawable/list_selector"></GridView>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+        <Button 
+            android:id="@+id/btn_payment_confirm_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="二维码"
+            android:drawableRight="@drawable/back"/>
+        <Button 
+            android:id="@+id/btn_payment_confirm_friend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="好友列表"
+            android:drawableRight="@drawable/back"/>       
+        
+    </LinearLayout>
+    
+</LinearLayout>
