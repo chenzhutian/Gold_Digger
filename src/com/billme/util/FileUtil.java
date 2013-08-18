@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.futurePayment.http.MyHttpClient;
-import com.futurePayment.model.*;
 
 public class FileUtil
 {

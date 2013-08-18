@@ -62,7 +62,6 @@ public class CaptureActivity extends Activity implements Callback {
 		inactivityTimer = new InactivityTimer(this);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -72,11 +71,12 @@ public class CaptureActivity extends Activity implements Callback {
 			initCamera(surfaceHolder);
 		} else {
 			surfaceHolder.addCallback(this);
-			surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+			//surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 		}
 		decodeFormats = null;
 		characterSet = null;
-
+		
+		//…Ë∂®playbeep
 		playBeep = true;
 		AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
 		if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
