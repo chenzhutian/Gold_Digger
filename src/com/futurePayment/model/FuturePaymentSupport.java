@@ -713,7 +713,28 @@ public class FuturePaymentSupport {
 		}
 		return result;
 	}
-	
+	public ArrayList<Friend> queryFriend()throws PaymentException{
+		ArrayList<Friend> al = null;
+		try {
+			Gson gson = new Gson();
+			MyResponse response = http.post(ServiceType.QUERY_BILL, null);
+			if(response.getResultCode() == ResultCode.SUCCESS)
+			{
+				JSONArray ja = response.getResultArray("friend");
+				for(int i = 0; i < ja.length(); i++)
+				{
+					Friend f = gson.fromJson(ja.getJSONObject(i).toString(), Friend.class);
+					al.add(f);
+				}
+			}
+			else
+				throw new PaymentException(response.getResultCode());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return al;
+	}
 	/**
 	 * Ìí¼ÓºÃÓÑ
 	 * @param friendId ºÃÓÑid

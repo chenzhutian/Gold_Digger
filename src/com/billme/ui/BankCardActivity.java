@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.billme.logic.BillMeActivity;
 import com.billme.logic.MainService;
-import com.billme.logic.Task;
 import com.billme.widget.MyListViewAdapter;
 import com.futurePayment.constant.ResultCode;
+import com.futurePayment.constant.Task;
 import com.futurePayment.model.BankCard;
 import com.futurePayment.model.PaymentException;
 
@@ -31,9 +31,6 @@ public class BankCardActivity extends BaseActivity implements BillMeActivity
 	public static final int ADD_BANK_CARD_SUCCESS = 2;
 	public static final int GET_BANK_CARD_FAILURE = -1;
 	public static final int ADD_BANK_CARD_FAILURE = -2;
-
-	private ImageButton backButton = null;
-	private TextView title = null;
 
 	private ListView bankCardList = null;
 	private Button bandCardBindButton = null;
@@ -52,23 +49,11 @@ public class BankCardActivity extends BaseActivity implements BillMeActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bank_card);
-		backButton = (ImageButton) findViewById(R.id.btn_mytitle_back);
-		title = (TextView) findViewById(R.id.tv_mytitle_title);
-
+		MainService.allActivities.add(this);
+		addTitle("银行卡管理");
+		
 		bankCardList = (ListView) findViewById(R.id.lv_bankcard_bankcards);
 		bandCardBindButton = (Button) findViewById(R.id.btn_bankcard_bind);
-
-		title.setText("银行卡管理");
-		backButton.setOnClickListener(new Button.OnClickListener()
-		{
-
-			@Override
-			public void onClick(View v)
-			{
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
 
 		bandCardBindButton.setOnClickListener(new Button.OnClickListener()
 		{
@@ -115,7 +100,7 @@ public class BankCardActivity extends BaseActivity implements BillMeActivity
 				WindowManager.LayoutParams winlp = addBankCard.getWindow()
 						.getAttributes();
 				winlp.alpha = 0.9f; // 0.0-1.0
-				addBankCard.getWindow().setAttributes(winlp);
+				addBankCard.addContentView(temp, winlp);
 				addBankCard.show();
 				
 			}
@@ -139,7 +124,7 @@ public class BankCardActivity extends BaseActivity implements BillMeActivity
 			bindAdapter();
 		}
 
-		MainService.allActivities.add(this);
+		
 	}
 
 //	@Override
@@ -158,7 +143,9 @@ public class BankCardActivity extends BaseActivity implements BillMeActivity
 		{
 			BankCard bc = bcl.get(i);
 			HashMap<String, Object> map = new HashMap<String, Object>();
+			//加入图片
 			map.put("text", bc.getBankName() + ":" + bc.getCardNumber());
+			al.add(map);
 		}
 		adapter = new MyListViewAdapter(this, al);
 		bankCardList.setAdapter(adapter);
@@ -169,7 +156,7 @@ public class BankCardActivity extends BaseActivity implements BillMeActivity
 					long arg3)
 			{
 				// TODO Auto-generated method stub
-				
+				//选中某张银行卡
 			}
 			
 		});

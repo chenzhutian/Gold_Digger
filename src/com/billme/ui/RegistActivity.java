@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.billme.logic.BillMeActivity;
 import com.billme.logic.MainService;
-import com.billme.logic.Task;
+import com.futurePayment.constant.Task;
 
 import android.os.Bundle;
 import android.graphics.drawable.Drawable;
@@ -16,10 +16,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegistActivity extends BaseActivity implements BillMeActivity
 {
+	
 	private EditText name = null;
 	private EditText loginPassword1 = null;
 	private EditText loginPassword2 = null;
@@ -28,7 +30,6 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 	private EditText realName = null;
 	private EditText phone = null;
 	private EditText email = null;
-	private ImageButton backButton = null;
 	private ImageButton boyButton = null;
 	private ImageButton girlButton = null;
 	private Button submitButton = null;
@@ -53,6 +54,7 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_regist);
+		setTitle("зЂВс");
 		
 		name = (EditText)findViewById(R.id.et_regist_name);
 		loginPassword1 = (EditText)findViewById(R.id.et_regist_password1);
@@ -61,8 +63,7 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 		payPassword2 = (EditText)findViewById(R.id.et_regist_pay_password2);
 		realName = (EditText)findViewById(R.id.et_regist_realName);
 		phone = (EditText)findViewById(R.id.et_regist_phone);
-		email = (EditText)findViewById(R.id.et_regist_email);
-		backButton = (ImageButton)findViewById(R.id.btn_regist_back);
+		email = (EditText)findViewById(R.id.et_regist_email);		
 		boyButton = (ImageButton)findViewById(R.id.btn_regist_boy);
 		girlButton = (ImageButton)findViewById(R.id.btn_regist_girl);
 		submitButton = (Button)findViewById(R.id.regist_submit_button);
@@ -143,14 +144,6 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 				}				
 			}	
 		});	
-		backButton.setOnClickListener(new Button.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
 		boyButton.setOnClickListener(new Button.OnClickListener() {
 
 			@Override

@@ -13,6 +13,7 @@ import org.json.JSONTokener;
  */
 public class MyResponse {
 	private JSONObject responseJson;  
+	private JSONObject data;
 	
 	public MyResponse(String response){
 		//int pos = response.lastIndexOf("{");
@@ -20,6 +21,7 @@ public class MyResponse {
 		JSONTokener parser = new JSONTokener(response);
 		try {
 			this.responseJson = (JSONObject)parser.nextValue();
+			data = responseJson.getJSONObject("data");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -41,13 +43,7 @@ public class MyResponse {
 	
 	public JSONObject getData()
 	{
-		JSONObject ob = null;
-		try {		
-			ob = responseJson.getJSONObject("data");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return ob;
+		return data;
 	}
 	
 	/**
@@ -65,7 +61,7 @@ public class MyResponse {
 	public JSONArray getResultArray(String name){
 		JSONArray array = null;
 		try{
-			array = responseJson.getJSONArray(name);
+			array = data.getJSONArray(name);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -79,7 +75,7 @@ public class MyResponse {
 	public JSONObject getResultObject(String name){
 		JSONObject object = null;
 		try {
-			object = responseJson.getJSONObject(name);
+			object = data.getJSONObject(name);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

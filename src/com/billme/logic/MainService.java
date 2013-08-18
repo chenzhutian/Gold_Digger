@@ -16,11 +16,13 @@ import android.os.Message;
 import android.util.Log;
 
 import com.billme.ui.BankCardActivity;
+import com.billme.ui.FriendActivity;
 import com.billme.ui.LoginActivity;
 import com.billme.ui.MainActivity;
 import com.billme.ui.R;
 import com.billme.ui.RegistActivity;
 
+import com.futurePayment.constant.Task;
 import com.futurePayment.model.*;
 
 @SuppressLint({ "UseValueOf", "HandlerLeak" })
@@ -130,6 +132,22 @@ public class MainService extends Service implements Runnable {
 							BankCardActivity.ADD_BANK_CARD_SUCCESS), msg.obj);
 				}
 			}
+			case Task.TASK_GET_FRIENDS:{
+				Log.i("error", "查询好友列表回调中");
+				BillMeActivity ba = (BillMeActivity) MainService
+						.getActivityByName("FriendActivity");
+				if (msg.obj instanceof PaymentException) {
+					PaymentException e = (PaymentException) msg.obj;
+					// TODO 返回失败信息
+					ba.refresh(new Integer(
+							FriendActivity.GET_FRIEND_SUCCESS), e);
+				}else if (msg.obj instanceof ArrayList<?>) {
+					futurePayment.getUser().setFriendList(
+							(ArrayList<Friend>) msg.obj);
+					ba.refresh(new Integer(
+							FriendActivity.GET_FRIEND_FAILURE));
+				}
+			}
 			default:
 				break;
 			}
@@ -216,6 +234,14 @@ public class MainService extends Service implements Runnable {
 					msg.obj = e;
 				}
 				break;
+			}
+			case Task.TASK_GET_FRIENDS:{
+				Log.i("error", "获取好友列表");
+				try{
+					msg.obj = futurePayment.queryFriend();
+				}catch (PaymentException e) {
+					msg.obj = e;
+				}
 			}
 			default:
 				break;
