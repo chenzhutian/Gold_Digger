@@ -1,17 +1,6 @@
 package com.futurePayment.model;
 
 import java.util.ArrayList;
-import java.sql.Date;
-import java.util.LinkedList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.google.gson.Gson;
-
-
-
-import android.util.Log;
 
 /**
  * 

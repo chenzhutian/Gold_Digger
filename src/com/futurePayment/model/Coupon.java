@@ -1,8 +1,5 @@
 package com.futurePayment.model;
 
-import java.sql.Date;
-
-
 
 public class Coupon
 {

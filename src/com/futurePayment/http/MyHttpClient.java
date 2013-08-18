@@ -1,7 +1,5 @@
 package com.futurePayment.http;
 
-
-import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -13,14 +11,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.billme.util.FileUtil;
-import com.futurePayment.constant.ResultCode;
-import com.futurePayment.constant.ServiceType;
 import com.futurePayment.constant.Uris;
-import com.futurePayment.model.PaymentException;
 
 import android.util.Log;
 

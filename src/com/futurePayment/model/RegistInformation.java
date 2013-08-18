@@ -73,6 +73,7 @@ public class RegistInformation
 			type = t;
 			number = n;
 		}
+		
 		public String getType()
 		{
 			return type;

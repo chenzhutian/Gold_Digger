@@ -3,20 +3,17 @@ package com.billme.ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import java.util.LinkedList;
-import java.util.List;
+
 
 import com.billme.logic.BillMeActivity;
 import com.billme.logic.MainService;
 import com.billme.widget.MyListViewAdapter;
 import com.futurePayment.constant.ResultCode;
 import com.futurePayment.constant.Task;
-import com.futurePayment.model.BankCard;
 import com.futurePayment.model.Friend;
 import com.futurePayment.model.PaymentException;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.Menu;

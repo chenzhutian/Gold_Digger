@@ -1,6 +1,5 @@
 package com.futurePayment.model;
 
-import java.util.Date;
 
 /**
  * 

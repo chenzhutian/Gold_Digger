@@ -8,23 +8,17 @@ import com.billme.widget.MyListViewAdapter;
 
 import com.futurePayment.model.Friend;
 
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class PaymentConfirmActivity extends BaseActivity implements BillMeActivity
 {
-	
-	private TextView text = null;
 	private ListView choiceList = null;
 	private GridView peopleList = null;
 	private MyListViewAdapter choiceAdapter = null;
@@ -42,7 +36,7 @@ public class PaymentConfirmActivity extends BaseActivity implements BillMeActivi
 		setContentView(R.layout.activity_payment_confirm);
 		addTitle("交易确认");
 		
-		text = (TextView)findViewById(R.id.tv_payment_confirm_text);
+		//text = (TextView)findViewById(R.id.tv_payment_confirm_text);
 		choiceList = (ListView)findViewById(R.id.lv_payment_confirm_choice);
 		peopleList = (GridView)findViewById(R.id.gv_payment_confirm_people);
 		friendButton = (Button)findViewById(R.id.btn_payment_confirm_friend);
