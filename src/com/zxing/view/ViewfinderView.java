@@ -150,5 +150,5 @@ public final class ViewfinderView extends View {
   public void addPossibleResultPoint(ResultPoint point) {
     possibleResultPoints.add(point);
   }
-
+  
 }

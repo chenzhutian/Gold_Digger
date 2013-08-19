@@ -56,7 +56,6 @@ public class CaptureActivity extends Activity implements Callback {
 		// ViewUtil.addTopView(getApplicationContext(), this,
 		// R.string.scan_card);
 		CameraManager.init(getApplication());
-
 		viewfinderView = (ViewfinderView)this.findViewById(R.id.viewfinder_view);
 		cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
 		hasSurface = false;

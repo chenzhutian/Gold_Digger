@@ -306,5 +306,5 @@ public class PaymentActivity extends BaseActivity implements BillMeActivity {
 //		@Override
 //		public void onNothingSelected(AdapterView<?> arg0) {
 //		}
-//	}
+//}
 }

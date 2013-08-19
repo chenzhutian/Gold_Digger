@@ -58,7 +58,9 @@ final class CameraConfigurationManager {
 		WindowManager manager = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
 		Display display = manager.getDefaultDisplay();
-		screenResolution = new Point(display.getWidth(), display.getHeight());
+		//screenResolution = new Point(display.getWidth(), display.getHeight());
+		screenResolution = new Point();
+		display.getSize(screenResolution);
 		Log.d(TAG, "Screen resolution: " + screenResolution);
 		cameraResolution = getCameraResolution(parameters, screenResolution);
 		Log.d(TAG, "Camera resolution: " + screenResolution);
@@ -198,7 +200,7 @@ final class CameraConfigurationManager {
 		// Restrict Behold II check to Cupcake, per Samsung's advice
 		// if (Build.MODEL.contains("Behold II") &&
 		// CameraManager.SDK_INT == Build.VERSION_CODES.CUPCAKE) {
-		if (Build.MODEL.contains("Behold II") && CameraManager.SDK_INT == 3) { // 3
+		if (Build.MODEL.contains("Behold II") && Build.VERSION.SDK_INT == 3) { // 3
 																				// =
 																				// Cupcake
 			parameters.set("flash-value", 1);

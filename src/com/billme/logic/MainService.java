@@ -25,9 +25,15 @@ import com.billme.ui.PaymentActivity;
 import com.billme.ui.PaymentConfirmActivity;
 import com.billme.ui.R;
 import com.billme.ui.RegistActivity;
-
 import com.futurePayment.constant.Task;
-import com.futurePayment.model.*;
+import com.futurePayment.model.BankCard;
+import com.futurePayment.model.Friend;
+import com.futurePayment.model.FuturePayment;
+import com.futurePayment.model.PaymentException;
+import com.futurePayment.model.RegistInformation;
+import com.futurePayment.model.Transfer;
+import com.futurePayment.model.User;
+
 
 @SuppressLint({ "UseValueOf", "HandlerLeak" })
 public class MainService extends Service implements Runnable {

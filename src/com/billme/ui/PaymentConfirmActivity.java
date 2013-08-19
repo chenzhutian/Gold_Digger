@@ -11,6 +11,7 @@ import com.futurePayment.constant.Task;
 import com.futurePayment.model.Friend;
 
 import android.os.Bundle;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.Menu;
@@ -22,8 +23,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class PaymentConfirmActivity extends BaseActivity implements BillMeActivity
 {
+
 	public final static int APPLY_SUCCESS = 1;
 	public final static int APPLY_FAILURE = -1;
 	
@@ -219,8 +222,8 @@ public class PaymentConfirmActivity extends BaseActivity implements BillMeActivi
 					.show();
 		}
 	}
-
-	@Override
+	
+@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
@@ -234,5 +237,4 @@ public class PaymentConfirmActivity extends BaseActivity implements BillMeActivi
 		}
 		peopleAdapter.notifyDataSetChanged();
 	}
-
 }

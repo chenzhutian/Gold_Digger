@@ -20,4 +20,3 @@ public class NFCPaymentActivity extends Activity {
 	}
 
 }
-
