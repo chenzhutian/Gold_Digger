@@ -6,23 +6,18 @@
     android:orientation="vertical"
     tools:context=".NFCPayment" >
 
-    <include
-        android:layout_weight="0"
-        layout="@layout/my_title" />
-
-    <TextView
-        style="@style/RegistText"
+    <include layout="@layout/my_title"
+        android:layout_weight="0"/>
+    <TextView style="@style/RegistText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_weight="0"
-        android:text="@string/tv_nfc_payment"
-        android:textSize="20sp" >
-    </TextView>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        android:text="@string/tv_nfc_payment"></TextView>
+	<ImageView 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	   	android:layout_weight="1"
+	  	/>
 </LinearLayout>

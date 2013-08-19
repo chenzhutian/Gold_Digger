@@ -58,17 +58,17 @@ public class MainService extends Service implements Runnable {
 				Log.i("error", "登陆回调中");
 				BillMeActivity ba = (BillMeActivity) MainService
 						.getActivityByName("LoginActivity");
-				// if (msg.obj instanceof PaymentException) {
-				// PaymentException e = (PaymentException) msg.obj;
-				// // TODO 返回失败信息
-				// ba.refresh(new Integer(LoginActivity.LOGIN_FAILURE), e);
-				// } else if (msg.obj instanceof BasicInformation) {
-				// BasicInformation bi = (BasicInformation) msg.obj;
-				// futurePayment.getUser().setName(bi.getName());
-				// futurePayment.getUser().setBalance(bi.getBalance());
-				// futurePayment.getUser().setGrade(bi.getGrade());
-				ba.refresh(new Integer(LoginActivity.LOGIN_SECCUSS));
-				// }
+//				if (msg.obj instanceof PaymentException) {
+//					PaymentException e = (PaymentException) msg.obj;
+//					// TODO 返回失败信息
+//					ba.refresh(new Integer(LoginActivity.LOGIN_FAILURE), e);
+//				} else if (msg.obj instanceof BasicInformation) {
+//					BasicInformation bi = (BasicInformation) msg.obj;
+//					futurePayment.getUser().setName(bi.getName());
+//					futurePayment.getUser().setBalance(bi.getBalance());
+//					futurePayment.getUser().setGrade(bi.getGrade());
+					ba.refresh(new Integer(LoginActivity.LOGIN_SECCUSS));
+//				}
 			}
 				break;
 			case Task.TASK_GET_USER_INFO: {
@@ -136,47 +136,52 @@ public class MainService extends Service implements Runnable {
 							BankCardActivity.ADD_BANK_CARD_SUCCESS), msg.obj);
 				}
 			}
-			case Task.TASK_GET_FRIENDS: {
+			case Task.TASK_GET_FRIENDS:{
 				Log.i("error", "查询好友列表回调中");
 				BillMeActivity ba = (BillMeActivity) MainService
 						.getActivityByName("FriendActivity");
 				if (msg.obj instanceof PaymentException) {
 					PaymentException e = (PaymentException) msg.obj;
 					// TODO 返回失败信息
-					ba.refresh(new Integer(FriendActivity.GET_FRIEND_SUCCESS),
-							e);
-				} else if (msg.obj instanceof ArrayList<?>) {
+					ba.refresh(new Integer(
+							FriendActivity.GET_FRIEND_SUCCESS), e);
+				}else if (msg.obj instanceof ArrayList<?>) {
 					futurePayment.getUser().setFriendList(
 							(ArrayList<Friend>) msg.obj);
-					ba.refresh(new Integer(FriendActivity.GET_FRIEND_FAILURE));
+					ba.refresh(new Integer(
+							FriendActivity.GET_FRIEND_FAILURE));
 				}
 			}
-			case Task.TASK_SINGLE_USER_PAY: {
+			case Task.TASK_SINGLE_USER_PAY:{
 				Log.i("error", "单人支付回调中");
 				BillMeActivity ba = (BillMeActivity) MainService
 						.getActivityByName("PaymentActivity");
 				if (msg.obj instanceof PaymentException) {
 					PaymentException e = (PaymentException) msg.obj;
 					// TODO 返回失败信息
-					ba.refresh(new Integer(PaymentActivity.PAY_SUCCESS), e);
-				} else {
-					ba.refresh(new Integer(PaymentActivity.PAY_SUCCESS), null);
+					ba.refresh(new Integer(
+							PaymentActivity.PAY_SUCCESS), e);
+				}
+				else
+				{
+					ba.refresh(new Integer(
+							PaymentActivity.PAY_SUCCESS), null);
 				}
 			}
-			case Task.TASK_MULTI_USER_PAY: {
+			case Task.TASK_MULTI_USER_PAY:{
 				Log.i("error", "多人支付回调中");
 				BillMeActivity ba = (BillMeActivity) MainService
 						.getActivityByName("PaymentConfirmActivity");
 				if (msg.obj instanceof PaymentException) {
 					PaymentException e = (PaymentException) msg.obj;
 					// TODO 返回失败信息
-					ba.refresh(
-							new Integer(PaymentConfirmActivity.APPLY_FAILURE),
-							e);
-				} else {
-					ba.refresh(
-							new Integer(PaymentConfirmActivity.APPLY_SUCCESS),
-							null);
+					ba.refresh(new Integer(
+							PaymentConfirmActivity.APPLY_FAILURE), e);
+				}
+				else
+				{
+					ba.refresh(new Integer(
+							PaymentConfirmActivity.APPLY_SUCCESS), null);
 				}
 			}
 			default:
@@ -193,17 +198,16 @@ public class MainService extends Service implements Runnable {
 			switch (task.getTaskId()) {
 			case Task.TASK_USER_LOGIN: {
 				// TODO
-				// Log.i("error", "登陆中");
-				// String userName = (String)
-				// task.getTaskParam().get("userName");
-				// String userPassword = (String) task.getTaskParam().get(
-				// "userPassword");
-				// futurePayment = FuturePayment.getInstance(userName);
-				// try {
-				// msg.obj = futurePayment.loginUser(userPassword);
-				// } catch (PaymentException e) {
-				// msg.obj = e;
-				// }
+//				Log.i("error", "登陆中");
+//				String userName = (String) task.getTaskParam().get("userName");
+//				String userPassword = (String) task.getTaskParam().get(
+//						"userPassword");
+//				futurePayment = FuturePayment.getInstance(userName);
+//				try {
+//					msg.obj = futurePayment.loginUser(userPassword);
+//				} catch (PaymentException e) {
+//					msg.obj = e;
+//				}
 				break;
 			}
 			case Task.TASK_GET_USER_INFO: {
@@ -267,43 +271,42 @@ public class MainService extends Service implements Runnable {
 				}
 				break;
 			}
-			case Task.TASK_GET_FRIENDS: {
+			case Task.TASK_GET_FRIENDS:{
 				Log.i("error", "获取好友列表");
-				try {
+				try{
 					msg.obj = futurePayment.queryFriend();
-				} catch (PaymentException e) {
+				}catch (PaymentException e) {
 					msg.obj = e;
 				}
 			}
-			case Task.TASK_SINGLE_USER_PAY: {
+			case Task.TASK_SINGLE_USER_PAY:{
 				Log.i("error", "个人支付");
-				try {
+				try{
 					Transfer t = new Transfer();
 					t.setSender(getUser().getName());
-					t.setReceiver((String) task.getTaskParam().get("receiver"));
-					t.setAmount((Double) task.getTaskParam().get("money"));
-					t.setMethod((String) task.getTaskParam().get("method"));
-					futurePayment.personalPay(t, (String) task.getTaskParam()
-							.get("password"));
-				} catch (PaymentException e) {
+					t.setReceiver((String)task.getTaskParam().get("receiver"));
+					t.setAmount((Double)task.getTaskParam().get("money"));
+					t.setMethod((String)task.getTaskParam().get("method"));
+					futurePayment.personalPay(t, (String)task.getTaskParam().get("password"));
+				}catch (PaymentException e) {
 					msg.obj = e;
 				}
 				break;
 			}
-			case Task.TASK_MULTI_USER_PAY: {
+			case Task.TASK_MULTI_USER_PAY:{
 				Log.i("error", "多人支付");
-				try {
-					ArrayList<HashMap<String, Object>> paramList = (ArrayList<HashMap<String, Object>>) task
-							.getTaskParam().get("sender");
+				try{
+					ArrayList<HashMap<String, Object>> paramList = (ArrayList<HashMap<String, Object>>) task.getTaskParam().get("sender");
 					ArrayList<HashMap<String, Object>> tempList = new ArrayList<HashMap<String, Object>>();
-					for (int i = 0; i < paramList.size(); i++) {
+					for(int i = 0; i < paramList.size(); i ++)
+					{
 						HashMap<String, Object> map = new HashMap<String, Object>();
 						map.put("payer", paramList.get(i).get("name"));
 						map.put("amount", paramList.get(i).get("money"));
 						tempList.add(map);
 					}
 					futurePayment.multiplePay(tempList);
-				} catch (PaymentException e) {
+				}catch (PaymentException e) {
 					msg.obj = e;
 				}
 				break;

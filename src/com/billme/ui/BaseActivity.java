@@ -35,15 +35,18 @@ public class BaseActivity extends Activity {
 		layoutParams.setMargins(0, 0, 0, 0);
 		this.addContentView(myLayout, layoutParams);
 	}
-
-	public void addTitle(String t) {
+	
+	public void addTitle(String t)
+	{
 		ImageButton backButton = (ImageButton) findViewById(R.id.btn_mytitle_back);
 		TextView title = (TextView) findViewById(R.id.tv_mytitle_title);
 		title.setText(t);
-		backButton.setOnClickListener(new Button.OnClickListener() {
+		backButton.setOnClickListener(new Button.OnClickListener()
+		{
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v)
+			{
 				// TODO Auto-generated method stub
 				finish();
 			}

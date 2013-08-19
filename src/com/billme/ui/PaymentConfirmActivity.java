@@ -22,11 +22,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PaymentConfirmActivity extends BaseActivity implements
-		BillMeActivity {
+public class PaymentConfirmActivity extends BaseActivity implements BillMeActivity
+{
 	public final static int APPLY_SUCCESS = 1;
 	public final static int APPLY_FAILURE = -1;
-
+	
 	private TextView text = null;
 	private ListView choiceList = null;
 	private GridView peopleList = null;
@@ -50,7 +50,7 @@ public class PaymentConfirmActivity extends BaseActivity implements
 		setContentView(R.layout.activity_payment_confirm);
 		addTitle("交易确认");
 
-		text = (TextView) findViewById(R.id.tv_payment_confirm_text);
+		text = (TextView)findViewById(R.id.tv_payment_confirm_text);
 		choiceList = (ListView) findViewById(R.id.lv_payment_confirm_choice);
 		peopleList = (GridView) findViewById(R.id.gv_payment_confirm_people);
 		friendButton = (Button) findViewById(R.id.btn_payment_confirm_friend);

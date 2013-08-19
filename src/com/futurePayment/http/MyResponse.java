@@ -1,75 +1,78 @@
 package com.futurePayment.http;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+
 /**
- * @author luo a class represents the response body of http request
+ * @author luo
+ * a class represents the response body of http request
  */
 public class MyResponse {
-	private JSONObject responseJson;
+	private JSONObject responseJson;  
 	private JSONObject data;
-
-	public MyResponse(String response) {
-		// int pos = response.lastIndexOf("{");
-		// JSONTokener parser = new JSONTokener(response.substring(pos));
+	
+	public MyResponse(String response){
+		//int pos = response.lastIndexOf("{");
+		//JSONTokener parser = new JSONTokener(response.substring(pos));
 		JSONTokener parser = new JSONTokener(response);
 		try {
-			this.responseJson = (JSONObject) parser.nextValue();
+			this.responseJson = (JSONObject)parser.nextValue();
 			data = responseJson.getJSONObject("data");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * @return resultCode
 	 */
-	public int getResultCode() {
+	public int getResultCode(){
 		int resultCode = 0;
 		try {
-
+			
 			resultCode = responseJson.getInt("result");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return resultCode;
 	}
-
-	public JSONObject getData() {
+	
+	public JSONObject getData()
+	{
 		return data;
 	}
-
+	
 	/**
 	 * 
-	 * @return JSONObject
+	 * @return   JSONObject
 	 */
-	public JSONObject getResponseBody() {
+	public JSONObject getResponseBody(){
 		return this.responseJson;
 	}
-
 	/**
 	 * 
-	 * @return resultArray
+	 * @return  resultArray
 	 * 
 	 */
-	public JSONArray getResultArray(String name) {
+	public JSONArray getResultArray(String name){
 		JSONArray array = null;
-		try {
+		try{
 			array = data.getJSONArray(name);
-		} catch (Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return array;
 	}
-
+	
 	/**
 	 * 
 	 * @return resultObject
 	 */
-	public JSONObject getResultObject(String name) {
+	public JSONObject getResultObject(String name){
 		JSONObject object = null;
 		try {
 			object = data.getJSONObject(name);
@@ -80,9 +83,11 @@ public class MyResponse {
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		// TODO Auto-generated method stub
 		return responseJson.toString();
 	}
-
+	
+	
 }
