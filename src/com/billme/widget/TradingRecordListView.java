@@ -74,7 +74,8 @@ public class TradingRecordListView extends ExpandableListView implements
 				int childPositon, int alpha);
 
 	}
-	//-- pinned Header view
+
+	// -- pinned Header view
 	private static final int MAX_ALPHA = 255;
 	private PinnedHeaderAdapter nAdapter;
 	public View nHeaderView;
@@ -185,7 +186,8 @@ public class TradingRecordListView extends ExpandableListView implements
 
 	@Override
 	public void setAdapter(ExpandableListAdapter adapter) {
-		// make sure TradingRecordListViewFooter is the last footer view, and only add once.
+		// make sure TradingRecordListViewFooter is the last footer view, and
+		// only add once.
 		if (mIsFooterReady == false) {
 			mIsFooterReady = true;
 			addFooterView(mFooterView);
@@ -481,7 +483,8 @@ public class TradingRecordListView extends ExpandableListView implements
 				if (mEnablePullRefresh
 						&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 					mPullRefreshing = true;
-					mHeaderView.setState(TradingRecordListViewHeader.STATE_REFRESHING);
+					mHeaderView
+							.setState(TradingRecordListViewHeader.STATE_REFRESHING);
 					if (mListViewListener != null) {
 						mListViewListener.onRefresh();
 					}

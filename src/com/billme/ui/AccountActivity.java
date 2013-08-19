@@ -24,15 +24,15 @@ public class AccountActivity extends BaseActivity implements BillMeActivity {
 	private TextView infoUserBalance;
 	private ListView accountAdmins;
 	private RoundAdapte adapter;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_account);
-		userIcon = (QuickContactBadge) this.findViewById(R.id.qcb_account_userIcon);
-		infoUserName = (TextView) this
-				.findViewById(R.id.tv_account_userName);
+		userIcon = (QuickContactBadge) this
+				.findViewById(R.id.qcb_account_userIcon);
+		infoUserName = (TextView) this.findViewById(R.id.tv_account_userName);
 		infoUserBalance = (TextView) this
 				.findViewById(R.id.tv_account_acountBalance);
 		accountAdmins = (ListView) this.findViewById(R.id.lv_account_admin);

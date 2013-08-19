@@ -5,44 +5,51 @@
     android:orientation="vertical"
     tools:context=".PaymentConfirmActivity" >
 
-    <include layout="@layout/my_title"/>
-    <TextView style="@style/DefaultText"
+    <include layout="@layout/my_title" />
+
+    <TextView
         android:id="@+id/tv_payment_confirm_text"
+        style="@style/DefaultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="您需向？？支付？？"/>
+        android:text="您需向？？支付？？" />
+
     <ListView
         android:id="@+id/lv_payment_confirm_choice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:listSelector="@drawable/list_selector"/>
-    <GridView 
+        android:listSelector="@drawable/list_selector" />
+
+    <GridView
         android:id="@+id/gv_payment_confirm_people"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:listSelector="@drawable/list_selector"></GridView>
-    <LinearLayout 
+        android:listSelector="@drawable/list_selector"
+        android:visibility="invisible" >
+    </GridView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="invisible">
-        <Button 
+        android:visibility="invisible" >
+
+        <Button
             android:id="@+id/btn_payment_confirm_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="二维码"
-            android:drawableRight="@drawable/back"/>
-        <Button 
+            android:drawableRight="@drawable/back"
+            android:text="二维码" />
+
+        <Button
             android:id="@+id/btn_payment_confirm_friend"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="好友列表"
-            android:drawableRight="@drawable/back"/>       
-        
+            android:drawableRight="@drawable/back"
+            android:text="好友列表" />
     </LinearLayout>
-    
+
 </LinearLayout>

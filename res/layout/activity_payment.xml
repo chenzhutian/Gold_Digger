@@ -2,91 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/default_background"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btn_pay_by_QRcode"
+    <include layout="@layout/my_title" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/btn_pay_by_QRcode" />
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp" >
 
-    <Button
-        android:id="@+id/btn_pay_by_NFC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/btn_pay_by_NFC" />
-
-    <SlidingDrawer
-        android:id="@+id/sd_shopping_cart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:content="@+id/sd_shopping_cart_content"
-        android:handle="@+id/sd_shopping_cart_handle" >
-
-        <Button
-            android:id="@+id/sd_shopping_cart_handle"
+        <TextView
+            style="@style/DefaultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cart" />
+            android:text="BillMe" />
 
         <LinearLayout
-            android:id="@+id/sd_shopping_cart_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp" >
 
-            <ListView
-                android:id="@+id/lv_item_records"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:choiceMode="singleChoice" />
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal" >
+                android:layout_weight="0"
+                android:text="支付密码" />
 
-                <TextView
-                    android:id="@+id/tv_amount_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@+id/tv_amount"
-                    android:text="@string/amountTag" />
-
-                <TextView
-                    android:id="@+id/tv_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="0.0" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/et_payment_password"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/btn_clear_cart"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/btn_clear_cart" />
-
-                <Button
-                    android:id="@+id/btn_pay_cart"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/btn_pay_cart" />
-            </LinearLayout>
+                android:layout_weight="1"
+                android:background="@drawable/border" />
         </LinearLayout>
-    </SlidingDrawer>
+
+        <Button
+            android:id="@+id/btn_payment_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_payment_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:drawableRight="@drawable/nav_left"
+        android:gravity="left|center_vertical"
+        android:text="使用银联支付"
+        android:textAppearance="@style/DefaultText" />
 
 </LinearLayout>

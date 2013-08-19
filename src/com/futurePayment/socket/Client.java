@@ -11,61 +11,59 @@ import org.json.JSONTokener;
 
 import com.futurePayment.model.Message;
 
-
 import android.util.Log;
 
- 
-
 public class Client implements Runnable {
-	private String clientId;           //the id of the client
-	private String serverUrl = "";     // the url of the server
-	private int serverPost;            //the post of the server
-	private final int INTERVAL = 1000 * 30;       // interval is set to 30 seconds 
+	private String clientId; // the id of the client
+	private String serverUrl = ""; // the url of the server
+	private int serverPost; // the post of the server
+	private final int INTERVAL = 1000 * 30; // interval is set to 30 seconds
 	private LinkedList<Message> unReadMessage = new LinkedList<Message>();
-	
-	public Client(){
-		
+
+	public Client() {
+
 	}
-	
-	public Client(String clientId,int serverPost){
+
+	public Client(String clientId, int serverPost) {
 		this.clientId = clientId;
 		this.serverPost = serverPost;
 	}
-	
-	public boolean hasUnReadMessage(){
+
+	public boolean hasUnReadMessage() {
 		return unReadMessage.size() > 0;
 	}
-	
-	public LinkedList<Message> getUnReadMessage(){
+
+	public LinkedList<Message> getUnReadMessage() {
 		return unReadMessage;
 	}
-	
+
 	/**
-	 * this method defines the job of the client thread.
-	 * the client connects to the server to see if there is
-	 * message for it in every other interval.
+	 * this method defines the job of the client thread. the client connects to
+	 * the server to see if there is message for it in every other interval.
 	 */
 	@Override
 	public void run() {
-		while(true){
+		while (true) {
 			Socket socket;
 			try {
 				Thread.sleep(INTERVAL);
-			    socket = new Socket(serverUrl,serverPost);
-				DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+				socket = new Socket(serverUrl, serverPost);
+				DataOutputStream out = new DataOutputStream(
+						socket.getOutputStream());
 				out.writeUTF(clientId);
-				DataInputStream in = new DataInputStream(socket.getInputStream());
-				
+				DataInputStream in = new DataInputStream(
+						socket.getInputStream());
+
 				String hasMessage = in.readUTF();
-				//check to see if there is unread message
-				if(hasMessage != null && hasMessage.equals("yes")){
+				// check to see if there is unread message
+				if (hasMessage != null && hasMessage.equals("yes")) {
 					boolean done = false;
-					while(!done){
+					while (!done) {
 						String messageString = in.readUTF();
-						if(messageString != null){
+						if (messageString != null) {
 							if (messageString.equals("done!"))
 								break;
-							else{
+							else {
 								Message message = getMessage(messageString);
 								unReadMessage.add(message);
 							}
@@ -79,7 +77,6 @@ public class Client implements Runnable {
 		}
 	}
 
-	
 	public String getClientId() {
 		return clientId;
 	}
@@ -107,15 +104,16 @@ public class Client implements Runnable {
 	public int getINTERVAL() {
 		return INTERVAL;
 	}
-	public Message getMessage(String messageString){
+
+	public Message getMessage(String messageString) {
 		JSONTokener parser = new JSONTokener(messageString);
-		Message message= new Message();
-		try{
-			JSONObject json = (JSONObject)parser.nextValue();
-			
+		Message message = new Message();
+		try {
+			JSONObject json = (JSONObject) parser.nextValue();
+
 			message.setContent(json.getString("content"));
-			message.setDate((Date)json.get("date"));
-		}catch(Exception e){
+			message.setDate((Date) json.get("date"));
+		} catch (Exception e) {
 			Log.i("error", e.toString());
 		}
 		return message;

@@ -2,25 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-     >
+    android:orientation="vertical" >
 
     <TextView
-        android:paddingLeft="5dip"
         android:id="@+id/tv_roundlistitem_sectionHeader"
-        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="30dip" />
+        android:gravity="center_vertical"
+        android:minHeight="30dip"
+        android:paddingLeft="5dip" />
 
     <TextView
-        android:paddingLeft="5dip"
         android:id="@+id/tv_roundlistitem_textValue"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:drawableRight="@drawable/nav_left"
         android:gravity="center_vertical"
         android:minHeight="45dip"
+        android:paddingLeft="5dip"
         android:paddingRight="10dip" />
 
 </LinearLayout>

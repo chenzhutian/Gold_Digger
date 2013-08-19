@@ -6,7 +6,6 @@
  */
 package com.billme.widget;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -26,18 +25,17 @@ public class TradingRecordListViewFooter extends LinearLayout {
 	private View mContentView;
 	private View mProgressBar;
 	private TextView mHintView;
-	
+
 	public TradingRecordListViewFooter(Context context) {
 		super(context);
 		initView(context);
 	}
-	
+
 	public TradingRecordListViewFooter(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
-	
 	public void setState(int state) {
 		mHintView.setVisibility(View.INVISIBLE);
 		mProgressBar.setVisibility(View.INVISIBLE);
@@ -52,20 +50,22 @@ public class TradingRecordListViewFooter extends LinearLayout {
 			mHintView.setText(R.string.xlistview_footer_hint_normal);
 		}
 	}
-	
+
 	public void setBottomMargin(int height) {
-		if (height < 0) return ;
-		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+		if (height < 0)
+			return;
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContentView
+				.getLayoutParams();
 		lp.bottomMargin = height;
 		mContentView.setLayoutParams(lp);
 	}
-	
+
 	public int getBottomMargin() {
-		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContentView
+				.getLayoutParams();
 		return lp.bottomMargin;
 	}
-	
-	
+
 	/**
 	 * normal status
 	 */
@@ -73,44 +73,47 @@ public class TradingRecordListViewFooter extends LinearLayout {
 		mHintView.setVisibility(View.VISIBLE);
 		mProgressBar.setVisibility(View.GONE);
 	}
-	
-	
+
 	/**
-	 * loading status 
+	 * loading status
 	 */
 	public void loading() {
 		mHintView.setVisibility(View.GONE);
 		mProgressBar.setVisibility(View.VISIBLE);
 	}
-	
+
 	/**
 	 * hide footer when disable pull load more
 	 */
 	public void hide() {
-		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContentView
+				.getLayoutParams();
 		lp.height = 0;
 		mContentView.setLayoutParams(lp);
 	}
-	
+
 	/**
 	 * show footer
 	 */
 	public void show() {
-		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)mContentView.getLayoutParams();
+		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mContentView
+				.getLayoutParams();
 		lp.height = LayoutParams.WRAP_CONTENT;
 		mContentView.setLayoutParams(lp);
 	}
-	
+
 	private void initView(Context context) {
 		mContext = context;
-		LinearLayout moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.trading_record_listview_footer, null);
+		LinearLayout moreView = (LinearLayout) LayoutInflater.from(mContext)
+				.inflate(R.layout.trading_record_listview_footer, null);
 		addView(moreView);
-		moreView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		
+		moreView.setLayoutParams(new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
 		mContentView = moreView.findViewById(R.id.rl_TRLVfooter_content);
 		mProgressBar = moreView.findViewById(R.id.pb_TRLVfooter_progressbar);
-		mHintView = (TextView)moreView.findViewById(R.id.tv_TRLVfooter_hint_textview);
+		mHintView = (TextView) moreView
+				.findViewById(R.id.tv_TRLVfooter_hint_textview);
 	}
-	
-	
+
 }

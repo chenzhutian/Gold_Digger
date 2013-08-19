@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-
-
     <com.billme.widget.TradingRecordListView
         android:id="@+id/lv_trading_records"
         android:layout_width="match_parent"

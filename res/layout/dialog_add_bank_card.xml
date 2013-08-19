@@ -4,37 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp" >
+
     <TextView
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textSize="30sp"
-        android:text="添加银行卡"/>
-    <EditText 
+        android:text="添加银行卡"
+        android:textSize="30sp" />
+
+    <EditText
         android:id="@+id/et_addbankcard_bank"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="银行"/>
-    <EditText 
+        android:layout_height="wrap_content"
+        android:hint="银行" />
+
+    <EditText
         android:id="@+id/et_addbankcard_card_number"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="卡号"/>
-    <LinearLayout 
         android:layout_height="wrap_content"
+        android:hint="卡号" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal">
-    <Button
-        android:id="@+id/btn_addbankcard_add"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="添加"/>
-    <Button
-        android:id="@+id/btn_addbankcard_cancel"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="取消"/>
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_addbankcard_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="添加" />
+
+        <Button
+            android:id="@+id/btn_addbankcard_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消" />
     </LinearLayout>
- </LinearLayout>
+
+</LinearLayout>

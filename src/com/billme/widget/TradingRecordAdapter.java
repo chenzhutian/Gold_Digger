@@ -15,17 +15,16 @@ import com.billme.ui.R;
 import com.billme.widget.TradingRecordListView.PinnedHeaderAdapter;
 
 public class TradingRecordAdapter extends BaseExpandableListAdapter implements
-		PinnedHeaderAdapter{
+		PinnedHeaderAdapter {
 
 	private ArrayList<String[]> group;
 	private ArrayList<ArrayList<String[]>> item;
 	// private Context context;
 	private LayoutInflater inflater;
 	private TradingRecordListView listView;
-	
-	
+
 	public TradingRecordAdapter(Context context, ArrayList<String[]> group,
-			ArrayList<ArrayList<String[]>> item,TradingRecordListView listView) {
+			ArrayList<ArrayList<String[]>> item, TradingRecordListView listView) {
 		// this.context = context;
 		inflater = LayoutInflater.from(context);
 		this.group = group;
@@ -48,10 +47,13 @@ public class TradingRecordAdapter extends BaseExpandableListAdapter implements
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		View view = convertView;
 		if (view == null) {
-			view = inflater.inflate(R.layout.trading_record_listview_item, null);
+			view = inflater
+					.inflate(R.layout.trading_record_listview_item, null);
 		}
-		TextView recordName = (TextView) view.findViewById(R.id.tv_TRLVitem_record_name);
-		TextView tradeDate = (TextView) view.findViewById(R.id.tv_TRLVitem_trading_date);
+		TextView recordName = (TextView) view
+				.findViewById(R.id.tv_TRLVitem_record_name);
+		TextView tradeDate = (TextView) view
+				.findViewById(R.id.tv_TRLVitem_trading_date);
 		TextView tradePrice = (TextView) view
 				.findViewById(R.id.tv_TRLVitem_trading_price);
 		TextView tradeState = (TextView) view
@@ -61,14 +63,14 @@ public class TradingRecordAdapter extends BaseExpandableListAdapter implements
 		tradeDate.setText(tempItem[1]);
 		tradePrice.setText(tempItem[2]);
 		tradeState.setText(tempItem[3]);
-//		recordName.setOnClickListener(new ChildOnClickListener());
-//		tradeDate.setOnClickListener(new ChildOnClickListener());
+		// recordName.setOnClickListener(new ChildOnClickListener());
+		// tradeDate.setOnClickListener(new ChildOnClickListener());
 		return view;
 	}
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		if(groupPosition > -1 && groupPosition < item.size()){
+		if (groupPosition > -1 && groupPosition < item.size()) {
 			return item.get(groupPosition).size();
 		}
 		return -1;
@@ -94,7 +96,8 @@ public class TradingRecordAdapter extends BaseExpandableListAdapter implements
 			View convertView, ViewGroup parent) {
 		View view = convertView;
 		if (view == null) {
-			view = inflater.inflate(R.layout.trading_record_listview_group, null);
+			view = inflater.inflate(R.layout.trading_record_listview_group,
+					null);
 		}
 		String[] tempItem = group.get(groupPosition);
 		((TextView) view.findViewById(R.id.tv_TRLVgroup_mounth_label))
@@ -120,39 +123,42 @@ public class TradingRecordAdapter extends BaseExpandableListAdapter implements
 	@Override
 	public int getPinnedHeaderState(int groupPosition, int childPosition) {
 		final int childCount = getChildrenCount(groupPosition);
-		
-		if(childPosition == (childCount - 1)){
+
+		if (childPosition == (childCount - 1)) {
 			return PINNED_HEADER_PUSHED_UP;
-		}else if (childPosition == -1 && !listView.isGroupExpanded(groupPosition)){
+		} else if (childPosition == -1
+				&& !listView.isGroupExpanded(groupPosition)) {
 			return PINNED_HEADER_GONE;
-		}else{
-			
+		} else {
+
 			return PINNED_HEADER_VISIBLE;
 		}
 	}
 
 	@Override
-	public void configurePinnedHeader(View header, int groupPosition,int childPosition,int alpha) {
+	public void configurePinnedHeader(View header, int groupPosition,
+			int childPosition, int alpha) {
 
-		if(groupPosition >-1 && groupPosition<group.size()){
-		String[] str = group.get(groupPosition);
-		((TextView) header.findViewById(R.id.tv_TRLVgroup_mounth_label)).setText(str[0]);
-		((TextView) header.findViewById(R.id.tv_TRLVgroup_income_amount_label))
-				.setText(str[1]);
-		((TextView) header.findViewById(R.id.tv_TRLVgroup_outcome_amount_label))
-				.setText(str[2]);
+		if (groupPosition > -1 && groupPosition < group.size()) {
+			String[] str = group.get(groupPosition);
+			((TextView) header.findViewById(R.id.tv_TRLVgroup_mounth_label))
+					.setText(str[0]);
+			((TextView) header
+					.findViewById(R.id.tv_TRLVgroup_income_amount_label))
+					.setText(str[1]);
+			((TextView) header
+					.findViewById(R.id.tv_TRLVgroup_outcome_amount_label))
+					.setText(str[2]);
 		}
 	}
 
-
-
-	class ChildOnClickListener implements OnClickListener{
+	class ChildOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
 			Log.i("error", "child has been touch");
 		}
-		
+
 	}
-	
+
 }

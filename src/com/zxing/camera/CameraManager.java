@@ -312,7 +312,6 @@ public final class CameraManager {
     throw new IllegalArgumentException("Unsupported picture format: " +
         previewFormat + '/' + previewFormatString);
   }
-
 	public Context getContext() {
 		return context;
 	}

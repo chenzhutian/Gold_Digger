@@ -3,7 +3,7 @@ package com.futurePayment.constant;
 /**
  * 
  * @author luo
- *
+ * 
  */
 public class ServiceType {
 	public static int LOGIN = -200;

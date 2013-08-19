@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-
 import org.json.JSONObject;
 
 import com.billme.util.FileUtil;
@@ -166,7 +165,8 @@ public class FuturePayment {
 	 * @return Ö§¸¶½á¹û
 	 * @throws PaymentException
 	 */
-	public boolean multiplePay(JSONObject[] payerlist) throws PaymentException {
+	public boolean multiplePay(ArrayList<HashMap<String, Object>> payerlist)
+			throws PaymentException {
 		try {
 			return supporter.multiplePay(payerlist);
 		} catch (PaymentException e) {

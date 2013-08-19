@@ -36,7 +36,6 @@
         android:singleLine="true"
         android:textColorHint="#B5B5B5"
         android:textSize="15sp" />
-- 
 
     <LinearLayout
         android:id="@+id/ll_login_layout"

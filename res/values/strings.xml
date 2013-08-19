@@ -50,5 +50,6 @@
     <string name="tv_nfc_payment">请将您的手机靠近nfc设备</string>
     <string name="title_activity_payment_confirm">PaymentConfirmActivity</string>
     <string name="title_activity_friend">FriendActivity</string>
+    <string name="title_activity_share">ShareActivity</string>
 
 </resources>

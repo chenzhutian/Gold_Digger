@@ -18,7 +18,7 @@
             android:layout_weight="1"
             android:background="#00ffffff"
             android:contentDescription="@string/iv_userportrait_contentDescription"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/pay_out" />
 
         <ImageButton
@@ -28,7 +28,7 @@
             android:layout_weight="1.00"
             android:background="#00ffffff"
             android:contentDescription="@string/iv_userportrait_contentDescription"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/society_out" />
     </LinearLayout>
 
@@ -46,7 +46,7 @@
             android:layout_weight="1"
             android:background="#00ffffff"
             android:contentDescription="@string/iv_userportrait_contentDescription"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/code_out" />
 
         <ImageButton
@@ -56,7 +56,7 @@
             android:layout_weight="1"
             android:background="#00ffffff"
             android:contentDescription="@string/iv_userportrait_contentDescription"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/management_out" />
     </LinearLayout>
 

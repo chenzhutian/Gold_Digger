@@ -55,7 +55,7 @@ public abstract class RoundListViewAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent){
+	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHoder hoder;
 		if (convertView == null) {
 			hoder = new ViewHoder();

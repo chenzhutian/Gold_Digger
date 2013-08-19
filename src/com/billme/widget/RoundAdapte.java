@@ -5,11 +5,7 @@ import java.util.Map;
 
 import android.content.Context;
 
-
-
-
 public class RoundAdapte extends RoundListViewAdapter {
-
 
 	public RoundAdapte(List<Map<String, Object>> data, Context context,
 			List<String> headers) {

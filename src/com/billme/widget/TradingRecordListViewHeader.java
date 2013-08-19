@@ -6,7 +6,6 @@
  */
 package com.billme.widget;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -31,9 +30,9 @@ public class TradingRecordListViewHeader extends LinearLayout {
 
 	private Animation mRotateUpAnim;
 	private Animation mRotateDownAnim;
-	
+
 	private final int ROTATE_ANIM_DURATION = 180;
-	
+
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_READY = 1;
 	public final static int STATE_REFRESHING = 2;
@@ -60,10 +59,10 @@ public class TradingRecordListViewHeader extends LinearLayout {
 		addView(mContainer, lp);
 		setGravity(Gravity.BOTTOM);
 
-		mArrowImageView = (ImageView)findViewById(R.id.iv_TRLVheader_arrow);
-		mHintTextView = (TextView)findViewById(R.id.tv_TRLVheader_hint_textview);
-		mProgressBar = (ProgressBar)findViewById(R.id.pb_TRLVheader_progressbar);
-		
+		mArrowImageView = (ImageView) findViewById(R.id.iv_TRLVheader_arrow);
+		mHintTextView = (TextView) findViewById(R.id.tv_TRLVheader_hint_textview);
+		mProgressBar = (ProgressBar) findViewById(R.id.pb_TRLVheader_progressbar);
+
 		mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
@@ -77,18 +76,19 @@ public class TradingRecordListViewHeader extends LinearLayout {
 	}
 
 	public void setState(int state) {
-		if (state == mState) return ;
-		
-		if (state == STATE_REFRESHING) {	
+		if (state == mState)
+			return;
+
+		if (state == STATE_REFRESHING) {
 			mArrowImageView.clearAnimation();
 			mArrowImageView.setVisibility(View.INVISIBLE);
 			mProgressBar.setVisibility(View.VISIBLE);
-		} else {	
+		} else {
 			mArrowImageView.setVisibility(View.VISIBLE);
 			mProgressBar.setVisibility(View.INVISIBLE);
 		}
-		
-		switch(state){
+
+		switch (state) {
 		case STATE_NORMAL:
 			if (mState == STATE_READY) {
 				mArrowImageView.startAnimation(mRotateDownAnim);
@@ -108,12 +108,12 @@ public class TradingRecordListViewHeader extends LinearLayout {
 		case STATE_REFRESHING:
 			mHintTextView.setText(R.string.xlistview_header_hint_loading);
 			break;
-			default:
+		default:
 		}
-		
+
 		mState = state;
 	}
-	
+
 	public void setVisiableHeight(int height) {
 		if (height < 0)
 			height = 0;

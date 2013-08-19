@@ -1,5 +1,4 @@
 package com.futurePayment.http;
-
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,37 +21,33 @@ import android.util.Log;
  * @author luo
  * 
  */
-public class MyHttpClient
-{
+public class MyHttpClient {
 	private static int OK = 200;// OK: Success!
 	private HttpClient http = new DefaultHttpClient();
 	private String name;
 
-	public MyHttpClient(String name)
-	{
+	public MyHttpClient(String name) {
 		this.name = name;
 	}
 
 	/**
 	 * 
-	 * @param serviceType 服务类型
-	 * @param json 发送的JSON请求
+	 * @param serviceType
+	 *            服务类型
+	 * @param json
+	 *            发送的JSON请求
 	 * @return 服务器返回
 	 */
-	public MyResponse post(int serviceType, JSONObject json)
-	{
+	public MyResponse post(int serviceType, JSONObject json) {
 		MyResponse response = null;
 		HttpPost post = new HttpPost(Uris.BASIC_URL);
-		try
-		{
+		try {
 			JSONObject set = new JSONObject();
 			set.put("serviceType", serviceType);
-			if (name != null)
-			{
+			if (name != null) {
 				set.put("name", name);
 			}
-			if (json != null)
-			{
+			if (json != null) {
 				set.put("data", json);
 			}
 			List<NameValuePair> params = new LinkedList<NameValuePair>();
@@ -63,15 +58,12 @@ public class MyHttpClient
 			HttpResponse res = http.execute(post);
 			int statusCode = res.getStatusLine().getStatusCode();
 			Log.i("test", "statusCode:" + statusCode);
-			if (statusCode == OK)
-			{
+			if (statusCode == OK) {
 				response = new MyResponse(EntityUtils.toString(res.getEntity(),
 						"utf-8"));
 			}
 			Log.i("test", "response:" + response.toString());
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -80,21 +72,19 @@ public class MyHttpClient
 
 	/**
 	 * 访问url地址以inputstream形式返回
-	 * @param urlStr url地址
+	 * 
+	 * @param urlStr
+	 *            url地址
 	 * @return 结果
 	 */
-	public InputStream getInputStreamFromUrl(String urlStr)
-	{
+	public InputStream getInputStreamFromUrl(String urlStr) {
 		InputStream inputStream = null;
-		try
-		{
+		try {
 			URL url = new URL(urlStr);
 			HttpURLConnection urlConn = (HttpURLConnection) url
 					.openConnection();
 			inputStream = urlConn.getInputStream();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return inputStream;

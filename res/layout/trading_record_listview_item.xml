@@ -1,78 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
+    <LinearLayout
+        android:id="@+id/ll_TRLVitem_linear1"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:background="@drawable/itembg"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/ll_TRLVitem_linear1"
+        <ImageView
+            android:id="@+id/iv_TRLVitem_enterprise_pic"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/item_trading_record"
+            android:src="@drawable/picasa" />
+
+        <TextView
+            android:id="@+id/tv_TRLVitem_enterprise_name"
             android:layout_width="70dp"
-            android:layout_height="80dp"
-            android:background="@drawable/itembg"
-            android:orientation="vertical"
-             >
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="@string/app_name" />
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_TRLVitem_enterprise_pic"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"
-                android:contentDescription="@string/item_trading_record"
-                android:src="@drawable/picasa"/>
+    <RelativeLayout
+        android:id="@+id/tl_TRLVitem_relat1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_toRightOf="@+id/ll_TRLVitem_linear1"
+        android:background="@drawable/list_selector" >
 
-            <TextView
-                android:id="@+id/tv_TRLVitem_enterprise_name"
-                android:layout_width="70dp"
-                android:layout_height="20dp"
-                android:gravity="center"
-                android:text="@string/app_name" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/tl_TRLVitem_relat1"
+        <TextView
+            android:id="@+id/tv_TRLVitem_record_name"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_toRightOf="@+id/ll_TRLVitem_linear1"
-            android:background="@drawable/list_selector" >
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/tv_TRLVitem_trading_price"
+            android:gravity="bottom"
+            android:paddingLeft="8dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
-                android:id="@+id/tv_TRLVitem_record_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/tv_TRLVitem_trading_price"
-                android:gravity="bottom"
-                android:paddingLeft="8dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <TextView
+            android:id="@+id/tv_TRLVitem_trading_date"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/tv_TRLVitem_record_name"
+            android:layout_alignRight="@+id/tv_TRLVitem_record_name"
+            android:layout_below="@+id/tv_TRLVitem_record_name"
+            android:gravity="top"
+            android:paddingLeft="8dp" />
 
-            <TextView
-                android:id="@+id/tv_TRLVitem_trading_date"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_alignLeft="@+id/tv_TRLVitem_record_name"
-                android:layout_alignRight="@+id/tv_TRLVitem_record_name"
-                android:layout_below="@+id/tv_TRLVitem_record_name"
-                android:gravity="top"
-                android:paddingLeft="8dp"/>
+        <TextView
+            android:id="@+id/tv_TRLVitem_trading_price"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:gravity="bottom|center_horizontal"
+            android:textColor="@color/orange" />
 
-            <TextView
-                android:id="@+id/tv_TRLVitem_trading_price"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:gravity="bottom|center_horizontal"
-                android:textColor="@color/orange" />
-
-            <TextView
-                android:id="@+id/tv_TRLVitem_trading_state"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_alignLeft="@+id/tv_TRLVitem_trading_price"
-                android:layout_alignRight="@+id/tv_TRLVitem_trading_price"
-                android:layout_below="@+id/tv_TRLVitem_trading_price"
-                android:gravity="top|center_horizontal" >
-            </TextView>
+        <TextView
+            android:id="@+id/tv_TRLVitem_trading_state"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/tv_TRLVitem_trading_price"
+            android:layout_alignRight="@+id/tv_TRLVitem_trading_price"
+            android:layout_below="@+id/tv_TRLVitem_trading_price"
+            android:gravity="top|center_horizontal" >
+        </TextView>
     </RelativeLayout>
 
 </RelativeLayout>

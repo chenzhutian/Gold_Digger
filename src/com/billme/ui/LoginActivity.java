@@ -34,6 +34,7 @@ public class LoginActivity extends BaseActivity implements BillMeActivity {
 		// myLayout = new MyChoiceButton(this);
 		// myLayout.setVisibility(View.VISIBLE);
 		// layout.addView(myLayout);
+		addLayout();
 
 		loginButton = (Button) findViewById(R.id.btn_login_login);
 		registButton = (Button) findViewById(R.id.btn_login_regist);
@@ -106,6 +107,10 @@ public class LoginActivity extends BaseActivity implements BillMeActivity {
 				break;
 			case ResultCode.REPEAT_LOGIN:
 				hint = "Repeatly Login";
+				break;
+			default:
+				hint = "Unknown fault";
+				break;
 			}
 			pd.cancel();
 			Toast.makeText(LoginActivity.this, hint, Toast.LENGTH_SHORT).show();
@@ -120,3 +125,4 @@ public class LoginActivity extends BaseActivity implements BillMeActivity {
 		}
 	}
 }
+

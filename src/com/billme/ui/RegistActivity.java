@@ -18,9 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class RegistActivity extends BaseActivity implements BillMeActivity
-{
-	
+public class RegistActivity extends BaseActivity implements BillMeActivity {
+
 	private EditText name = null;
 	private EditText loginPassword1 = null;
 	private EditText loginPassword2 = null;
@@ -33,7 +32,7 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 	private ImageButton girlButton = null;
 	private Button submitButton = null;
 	private DatePicker birthday = null;
-	
+
 	private Drawable click = null;
 	private Drawable blank = null;
 	private Drawable wrong = null;
@@ -42,114 +41,105 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 	public static final int NAME_AVAILABLE = 2;
 	public static final int REGIST_FAILURE = -1;
 	public static final int NAME_NOT_AVAILABLE = -2;
-	
+
 	boolean lpSame = false;
 	boolean ppSame = false;
 	boolean nAvailable = false;
-	boolean sexChoice = true;//true represents boy,false represents girl
+	boolean sexChoice = true;// true represents boy,false represents girl
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_regist);
 		setTitle("注册");
-		
-		name = (EditText)findViewById(R.id.et_regist_name);
-		loginPassword1 = (EditText)findViewById(R.id.et_regist_password1);
-		loginPassword2 = (EditText)findViewById(R.id.et_regist_password2);
-		payPassword1 = (EditText)findViewById(R.id.et_regist_pay_password1);
-		payPassword2 = (EditText)findViewById(R.id.et_regist_pay_password2);
-		realName = (EditText)findViewById(R.id.et_regist_realName);
-		phone = (EditText)findViewById(R.id.et_regist_phone);
-		email = (EditText)findViewById(R.id.et_regist_email);		
-		boyButton = (ImageButton)findViewById(R.id.btn_regist_boy);
-		girlButton = (ImageButton)findViewById(R.id.btn_regist_girl);
-		submitButton = (Button)findViewById(R.id.regist_submit_button);
-		birthday = (DatePicker)findViewById(R.id.regist_birthday);
-		name.setOnFocusChangeListener(new OnFocusChangeListener(){
+
+		name = (EditText) findViewById(R.id.et_regist_name);
+		loginPassword1 = (EditText) findViewById(R.id.et_regist_password1);
+		loginPassword2 = (EditText) findViewById(R.id.et_regist_password2);
+		payPassword1 = (EditText) findViewById(R.id.et_regist_pay_password1);
+		payPassword2 = (EditText) findViewById(R.id.et_regist_pay_password2);
+		realName = (EditText) findViewById(R.id.et_regist_realName);
+		phone = (EditText) findViewById(R.id.et_regist_phone);
+		email = (EditText) findViewById(R.id.et_regist_email);
+		boyButton = (ImageButton) findViewById(R.id.btn_regist_boy);
+		girlButton = (ImageButton) findViewById(R.id.btn_regist_girl);
+		submitButton = (Button) findViewById(R.id.regist_submit_button);
+		birthday = (DatePicker) findViewById(R.id.regist_birthday);
+		name.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
-			public void onFocusChange(View arg0, boolean arg1)
-			{
-				if(!arg1)
-				{
+			public void onFocusChange(View arg0, boolean arg1) {
+				if (!arg1) {
 					String temp = name.getText().toString();
-					if(temp != null)
-					{
+					if (temp != null) {
 						HashMap<String, String> param = new HashMap<String, String>();
 						param.put("name", temp);
-						Task task = new Task(Task.TASK_CHECK_NAME_AVAILABLE, param);
+						Task task = new Task(Task.TASK_CHECK_NAME_AVAILABLE,
+								param);
 						MainService.newTask(task);
 					}
 				}
-					
-						
+
 			}
-			
-		});	
-		loginPassword2.setOnFocusChangeListener(new OnFocusChangeListener(){
+
+		});
+		loginPassword2.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
-			public void onFocusChange(View v, boolean arg1)
-			{
+			public void onFocusChange(View v, boolean arg1) {
 				// TODO Auto-generated method stub
-				if(!arg1)
-				{
+				if (!arg1) {
 					String temp1 = loginPassword1.getText().toString();
 					String temp2 = loginPassword2.getText().toString();
-					if(!"".equals(temp1) && !"".equals(temp2))
-					{
-						if(temp1.equals(temp2))
-						{
-							click = getResources().getDrawable(R.drawable.click);
-							loginPassword1.setCompoundDrawables(null, null, click, null);
+					if (!"".equals(temp1) && !"".equals(temp2)) {
+						if (temp1.equals(temp2)) {
+							click = getResources()
+									.getDrawable(R.drawable.click);
+							loginPassword1.setCompoundDrawables(null, null,
+									click, null);
 							lpSame = true;
-						}
-						else
-						{
-							wrong = getResources().getDrawable(R.drawable.wrong);
-							loginPassword1.setCompoundDrawables(null, null, wrong, null);
+						} else {
+							wrong = getResources()
+									.getDrawable(R.drawable.wrong);
+							loginPassword1.setCompoundDrawables(null, null,
+									wrong, null);
 							lpSame = false;
 						}
 					}
-				}				
+				}
 			}
-			
-		});	
-		payPassword2.setOnFocusChangeListener(new OnFocusChangeListener(){
+
+		});
+		payPassword2.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
-			public void onFocusChange(View v, boolean arg1)
-			{
+			public void onFocusChange(View v, boolean arg1) {
 				// TODO Auto-generated method stub
-				if(!arg1)
-				{
+				if (!arg1) {
 					String temp1 = payPassword1.getText().toString();
 					String temp2 = payPassword2.getText().toString();
-					if(!"".equals(temp1) && !"".equals(temp2))
-					{
-						if(temp1.equals(temp2))
-						{
-							click = getResources().getDrawable(R.drawable.click);
-							payPassword1.setCompoundDrawables(null, null, click, null);								
+					if (!"".equals(temp1) && !"".equals(temp2)) {
+						if (temp1.equals(temp2)) {
+							click = getResources()
+									.getDrawable(R.drawable.click);
+							payPassword1.setCompoundDrawables(null, null,
+									click, null);
 							ppSame = true;
-						}
-						else
-						{
-							wrong = getResources().getDrawable(R.drawable.wrong);
-							payPassword1.setCompoundDrawables(null, null, wrong, null);
+						} else {
+							wrong = getResources()
+									.getDrawable(R.drawable.wrong);
+							payPassword1.setCompoundDrawables(null, null,
+									wrong, null);
 							ppSame = false;
 						}
 					}
-				}				
-			}	
-		});	
+				}
+			}
+		});
 		boyButton.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(!boyButton.getDrawable().equals(click))
-				{
+				if (!boyButton.getDrawable().equals(click)) {
 					click = getResources().getDrawable(R.drawable.click);
 					blank = getResources().getDrawable(R.drawable.blank);
 					boyButton.setImageDrawable(click);
@@ -163,8 +153,7 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(!girlButton.getDrawable().equals(click))
-				{
+				if (!girlButton.getDrawable().equals(click)) {
 					click = getResources().getDrawable(R.drawable.click);
 					blank = getResources().getDrawable(R.drawable.blank);
 					girlButton.setImageDrawable(click);
@@ -187,19 +176,19 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 				String p = phone.getText().toString();
 				String e = email.getText().toString();
 				String s = null;
-				if(sexChoice)
+				if (sexChoice)
 					s = "男";
 				else
 					s = "女";
 				@SuppressWarnings("deprecation")
-				Date date = new Date(birthday.getYear() - 1900,birthday.getMonth(),birthday.getDayOfMonth());
+				Date date = new Date(birthday.getYear() - 1900, birthday
+						.getMonth(), birthday.getDayOfMonth());
 				String b = date.toString();
-				Log.i("error",b);
-				
-				if(n != null && lp1 != null && lp2 != null && pp1 != null && pp2 != null && rn != null && p != null && e != null)
-				{
-					if(lpSame && ppSame && nAvailable)
-					{
+				Log.i("error", b);
+
+				if (n != null && lp1 != null && lp2 != null && pp1 != null
+						&& pp2 != null && rn != null && p != null && e != null) {
+					if (lpSame && ppSame && nAvailable) {
 						HashMap<String, String> param = new HashMap<String, String>();
 						param.put("name", n);
 						param.put("loginPassword", lp1);
@@ -209,34 +198,30 @@ public class RegistActivity extends BaseActivity implements BillMeActivity
 						param.put("email", e);
 						param.put("sex", s);
 						param.put("birthday", b);
-						Task task = new Task(Task.TASK_USER_REGIST,param);
+						Task task = new Task(Task.TASK_USER_REGIST, param);
 						MainService.newTask(task);
-					}					
+					}
+				} else {
+					Toast.makeText(RegistActivity.this, "请填写完整注册信息",
+							Toast.LENGTH_SHORT).show();
 				}
-				else
-				{
-					Toast.makeText(RegistActivity.this, "请填写完整注册信息", Toast.LENGTH_SHORT).show();
-				}
-				
+
 			}
 		});
 		MainService.allActivities.add(this);
 	}
 
 	@Override
-	public void init()
-	{
+	public void init() {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void refresh(Object... param)
-	{
+	public void refresh(Object... param) {
 
 		// TODO Auto-generated method stub
-		switch (((Integer) param[0]).intValue())
-		{
+		switch (((Integer) param[0]).intValue()) {
 		case REGIST_SUCCESS:
 			Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
 			finish();

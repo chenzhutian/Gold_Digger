@@ -36,14 +36,13 @@ public class UserImformationActivity extends BaseActivity implements
 
 		expandableListView = (TradingRecordListView) findViewById(R.id.lv_trading_records);
 		TradingRecordAdapter adapter = new TradingRecordAdapter(this,
-				tempGroup, tempItem,expandableListView);
-//		expandableListView.setPinnedHeaderView(getLayoutInflater().inflate(
-//				R.layout.trading_record_group_header, expandableListView, false));
+				tempGroup, tempItem, expandableListView);
+		// expandableListView.setPinnedHeaderView(getLayoutInflater().inflate(
+		// R.layout.trading_record_group_header, expandableListView, false));
 		expandableListView.setAdapter(adapter);
 		expandableListView.setXListViewListener(this);
 		expandableListView.expandGroup(0);
-//		expandableListView.setOnScrollListener(adapter);
-
+		// expandableListView.setOnScrollListener(adapter);
 
 		// expandableListView
 		// .setOnGroupExpandListener(new OnGroupExpandListener() {
@@ -116,8 +115,9 @@ public class UserImformationActivity extends BaseActivity implements
  * .findViewById(R.id.tv_imformation_acountBalance); //
  * infoUserBalance.setText(MainService.getUser().getUserId());
  * 
- * lvTradingRecords = (TradingRecordListView) this .findViewById(R.id.lv_trading_records);
- * myList = new ArrayList<HashMap<String, String>>();
+ * lvTradingRecords = (TradingRecordListView) this
+ * .findViewById(R.id.lv_trading_records); myList = new
+ * ArrayList<HashMap<String, String>>();
  * 
  * myTradingRecords = new SimpleAdapter(this, myList,
  * R.layout.trading_record_list_item, new String[] { "commodityName",

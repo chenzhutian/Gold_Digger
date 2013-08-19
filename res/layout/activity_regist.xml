@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <include layout="@layout/my_title"/>
+            <include layout="@layout/my_title" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -300,13 +300,13 @@
 
     <Button
         android:id="@+id/regist_submit_button"
-        android:padding="10dp"
-        android:textSize="20sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#434343"
+        android:padding="10dp"
         android:text="提交"
-        android:textColor="#1C7EFB" />
+        android:textColor="#1C7EFB"
+        android:textSize="20sp" />
 
 </LinearLayout>

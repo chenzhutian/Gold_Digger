@@ -45,7 +45,7 @@ public class LogoActivity extends BaseActivity implements BillMeActivity {
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
-				
+
 				Intent intent = new Intent(LogoActivity.this,
 						LoginActivity.class);
 				startActivity(intent);
@@ -72,7 +72,6 @@ public class LogoActivity extends BaseActivity implements BillMeActivity {
 
 	@Override
 	public void init() {
-
 
 	}
 
