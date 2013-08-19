@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class PaymentConfirmActivity extends BaseActivity implements BillMeActivity
 {
 
@@ -221,8 +222,8 @@ public class PaymentConfirmActivity extends BaseActivity implements BillMeActivi
 					.show();
 		}
 	}
-
-	@Override
+	
+@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
@@ -236,5 +237,4 @@ public class PaymentConfirmActivity extends BaseActivity implements BillMeActivi
 		}
 		peopleAdapter.notifyDataSetChanged();
 	}
-
 }

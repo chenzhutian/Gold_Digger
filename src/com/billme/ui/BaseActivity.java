@@ -63,7 +63,7 @@ public class BaseActivity extends Activity {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		if (myLayout.isShown())
+		if (myLayout != null && myLayout.isShown())
 			return myLayout.onTouchEvent(event);
 		return gd.onTouchEvent(event);
 	}

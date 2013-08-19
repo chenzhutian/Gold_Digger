@@ -78,5 +78,4 @@ public class Task {
 	public void setTaskParam(Map taskParam) {
 		this.taskParam = taskParam;
 	}
-
 }

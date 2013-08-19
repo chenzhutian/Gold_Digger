@@ -43,4 +43,5 @@ public class Friend implements Parcelable {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	
 }

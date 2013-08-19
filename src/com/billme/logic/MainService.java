@@ -2,6 +2,8 @@ package com.billme.logic;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,11 +21,19 @@ import com.billme.ui.BankCardActivity;
 import com.billme.ui.FriendActivity;
 import com.billme.ui.LoginActivity;
 import com.billme.ui.MainActivity;
+import com.billme.ui.PaymentActivity;
+import com.billme.ui.PaymentConfirmActivity;
 import com.billme.ui.R;
 import com.billme.ui.RegistActivity;
-
 import com.futurePayment.constant.Task;
-import com.futurePayment.model.*;
+import com.futurePayment.model.BankCard;
+import com.futurePayment.model.Friend;
+import com.futurePayment.model.FuturePayment;
+import com.futurePayment.model.PaymentException;
+import com.futurePayment.model.RegistInformation;
+import com.futurePayment.model.Transfer;
+import com.futurePayment.model.User;
+
 
 @SuppressLint({ "UseValueOf", "HandlerLeak" })
 public class MainService extends Service implements Runnable {
@@ -148,6 +158,38 @@ public class MainService extends Service implements Runnable {
 							FriendActivity.GET_FRIEND_FAILURE));
 				}
 			}
+			case Task.TASK_SINGLE_USER_PAY:{
+				Log.i("error", "单人支付回调中");
+				BillMeActivity ba = (BillMeActivity) MainService
+						.getActivityByName("PaymentActivity");
+				if (msg.obj instanceof PaymentException) {
+					PaymentException e = (PaymentException) msg.obj;
+					// TODO 返回失败信息
+					ba.refresh(new Integer(
+							PaymentActivity.PAY_SUCCESS), e);
+				}
+				else
+				{
+					ba.refresh(new Integer(
+							PaymentActivity.PAY_SUCCESS), null);
+				}
+			}
+			case Task.TASK_MULTI_USER_PAY:{
+				Log.i("error", "多人支付回调中");
+				BillMeActivity ba = (BillMeActivity) MainService
+						.getActivityByName("PaymentConfirmActivity");
+				if (msg.obj instanceof PaymentException) {
+					PaymentException e = (PaymentException) msg.obj;
+					// TODO 返回失败信息
+					ba.refresh(new Integer(
+							PaymentConfirmActivity.APPLY_FAILURE), e);
+				}
+				else
+				{
+					ba.refresh(new Integer(
+							PaymentConfirmActivity.APPLY_SUCCESS), null);
+				}
+			}
 			default:
 				break;
 			}
@@ -242,6 +284,38 @@ public class MainService extends Service implements Runnable {
 				}catch (PaymentException e) {
 					msg.obj = e;
 				}
+			}
+			case Task.TASK_SINGLE_USER_PAY:{
+				Log.i("error", "个人支付");
+				try{
+					Transfer t = new Transfer();
+					t.setSender(getUser().getName());
+					t.setReceiver((String)task.getTaskParam().get("receiver"));
+					t.setAmount((Double)task.getTaskParam().get("money"));
+					t.setMethod((String)task.getTaskParam().get("method"));
+					futurePayment.personalPay(t, (String)task.getTaskParam().get("password"));
+				}catch (PaymentException e) {
+					msg.obj = e;
+				}
+				break;
+			}
+			case Task.TASK_MULTI_USER_PAY:{
+				Log.i("error", "多人支付");
+				try{
+					ArrayList<HashMap<String, Object>> paramList = (ArrayList<HashMap<String, Object>>) task.getTaskParam().get("sender");
+					ArrayList<HashMap<String, Object>> tempList = new ArrayList<HashMap<String, Object>>();
+					for(int i = 0; i < paramList.size(); i ++)
+					{
+						HashMap<String, Object> map = new HashMap<String, Object>();
+						map.put("payer", paramList.get(i).get("name"));
+						map.put("amount", paramList.get(i).get("money"));
+						tempList.add(map);
+					}
+					futurePayment.multiplePay(tempList);
+				}catch (PaymentException e) {
+					msg.obj = e;
+				}
+				break;
 			}
 			default:
 				break;
